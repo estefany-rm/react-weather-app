@@ -4,6 +4,7 @@ import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     setWeatherData({
@@ -12,7 +13,7 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       date: "Sunday 17:50",
       description: response.data.weather[0].description,
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
+      icon: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
       wind: response.data.wind.speed,
       city: response.data.name,
     });
@@ -47,7 +48,7 @@ export default function Weather(props) {
         </ul>
         <div className="row">
           <div className="col-6">
-            <img src={weatherData.iconUrl} alt={weatherData.description} />
+            <img src={weatherData.icon} alt={weatherData.description} />
 
             <span className="temperature">
               {Math.round(weatherData.temperature)}
